@@ -23,6 +23,6 @@ target 'DatingApp' do
   pod 'Firebase/Auth'
   pod 'Firebase/Storage'
   pod 'SDWebImage', '~>3.8'
-
+  pod 'Koloda', '~> 3.1.2'
 
 end

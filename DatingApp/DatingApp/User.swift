@@ -14,7 +14,8 @@ class User{
     var uid:String?
     var username: String?
     var profileImage: String?
-    var description : String?
+    var description: String?
+    var gender:String?
 
     
     init?(snapshot: FIRDataSnapshot){
@@ -27,6 +28,12 @@ class User{
             self.username = dictUsername
         }else{
             self.username = ""
+        }
+        
+        if let dictGender = dict["gender"] as? String{
+            self.gender = dictGender
+        }else{
+            self.gender = ""
         }
         
         if let dictPImage = dict["profileImage"] as? String{

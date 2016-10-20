@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="StaticView" customModule="DatingApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="342" height="348"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="QiM-DF-rLL">
+                    <rect key="frame" x="0.0" y="0.0" width="342" height="348"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="snorlax" translatesAutoresizingMaskIntoConstraints="NO" id="uh5-SM-XxZ">
+                            <rect key="frame" x="0.0" y="0.0" width="342" height="300"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="300" id="Vzb-jg-lXf"/>
+                                <constraint firstAttribute="width" secondItem="uh5-SM-XxZ" secondAttribute="height" multiplier="1:1" id="kM3-f7-yt6"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LYy-zF-zJ6">
+                            <rect key="frame" x="0.0" y="300" width="342" height="48"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="LYy-zF-zJ6" firstAttribute="width" secondItem="uh5-SM-XxZ" secondAttribute="height" multiplier="6:1" id="AnO-tC-aeN"/>
+                        <constraint firstItem="uh5-SM-XxZ" firstAttribute="width" secondItem="LYy-zF-zJ6" secondAttribute="height" multiplier="2:1" id="gvR-Sh-Hkn"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="gvR-Sh-Hkn"/>
+                            <exclude reference="AnO-tC-aeN"/>
+                        </mask>
+                    </variation>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="QiM-DF-rLL" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="1CA-VR-tVN"/>
+                <constraint firstItem="QiM-DF-rLL" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Puh-DQ-Ejq"/>
+                <constraint firstAttribute="trailing" secondItem="QiM-DF-rLL" secondAttribute="trailing" id="SwQ-ee-Clb"/>
+                <constraint firstAttribute="bottom" secondItem="QiM-DF-rLL" secondAttribute="bottom" id="hbp-4i-OTd"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="userImageView" destination="uh5-SM-XxZ" id="o0c-y8-CUj"/>
+                <outlet property="userNameLabel" destination="LYy-zF-zJ6" id="DsT-lr-6a9"/>
+            </connections>
+            <point key="canvasLocation" x="116" y="442"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="snorlax" width="32" height="32"/>
+    </resources>
+</document>

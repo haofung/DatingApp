@@ -21,6 +21,9 @@
 		116833691DB86CF10063D973 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116833681DB86CF10063D973 /* User.swift */; };
 		1168336B1DB86FE60063D973 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1168336A1DB86FE60063D973 /* EditViewController.swift */; };
 		1168336D1DB8726A0063D973 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1168336C1DB8726A0063D973 /* DataService.swift */; };
+		1168337B1DB8934F0063D973 /* StaticView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1168337A1DB8934F0063D973 /* StaticView.xib */; };
+		1168337D1DB894220063D973 /* StaticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1168337C1DB894220063D973 /* StaticView.swift */; };
+		1168337F1DB8A46C0063D973 /* MatchedListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1168337E1DB8A46C0063D973 /* MatchedListTableViewController.swift */; };
 		6AC2666C514EE14444DF821A /* Pods_DatingAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0B07217372331438B191CED /* Pods_DatingAppUITests.framework */; };
 		AB6E961A2D49DBE74BBC7893 /* Pods_DatingAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C2F61CC02EB37E551AFBFBB /* Pods_DatingAppTests.framework */; };
 		AE264ACDFDBFF51CB122E469 /* Pods_DatingApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F488F7993AFB4E253CED1C7 /* Pods_DatingApp.framework */; };
@@ -64,6 +67,9 @@
 		116833681DB86CF10063D973 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1168336A1DB86FE60063D973 /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		1168336C1DB8726A0063D973 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		1168337A1DB8934F0063D973 /* StaticView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StaticView.xib; sourceTree = "<group>"; };
+		1168337C1DB894220063D973 /* StaticView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticView.swift; sourceTree = "<group>"; };
+		1168337E1DB8A46C0063D973 /* MatchedListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchedListTableViewController.swift; sourceTree = "<group>"; };
 		1F488F7993AFB4E253CED1C7 /* Pods_DatingApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DatingApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D5585E442D104DE644F2E09 /* Pods-DatingApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DatingApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-DatingApp/Pods-DatingApp.release.xcconfig"; sourceTree = "<group>"; };
 		448B97CFADB8680B2C595E68 /* Pods-DatingAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DatingAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DatingAppUITests/Pods-DatingAppUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -132,6 +138,9 @@
 				116833341DB85EFE0063D973 /* LoginViewController.swift */,
 				116833601DB862090063D973 /* RegisterViewController.swift */,
 				116833641DB866270063D973 /* HomeViewController.swift */,
+				1168337A1DB8934F0063D973 /* StaticView.xib */,
+				1168337C1DB894220063D973 /* StaticView.swift */,
+				1168337E1DB8A46C0063D973 /* MatchedListTableViewController.swift */,
 				116833661DB866AE0063D973 /* ProfileViewController.swift */,
 				1168336C1DB8726A0063D973 /* DataService.swift */,
 				1168336A1DB86FE60063D973 /* EditViewController.swift */,
@@ -298,6 +307,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1168337B1DB8934F0063D973 /* StaticView.xib in Resources */,
 				1168333D1DB85EFE0063D973 /* LaunchScreen.storyboard in Resources */,
 				116833631DB863CB0063D973 /* GoogleService-Info.plist in Resources */,
 				1168333A1DB85EFE0063D973 /* Assets.xcassets in Resources */,
@@ -451,12 +461,14 @@
 			files = (
 				116833611DB862090063D973 /* RegisterViewController.swift in Sources */,
 				116833351DB85EFE0063D973 /* LoginViewController.swift in Sources */,
+				1168337F1DB8A46C0063D973 /* MatchedListTableViewController.swift in Sources */,
 				116833691DB86CF10063D973 /* User.swift in Sources */,
 				116833671DB866AE0063D973 /* ProfileViewController.swift in Sources */,
 				116833331DB85EFE0063D973 /* AppDelegate.swift in Sources */,
 				116833651DB866270063D973 /* HomeViewController.swift in Sources */,
 				1168336B1DB86FE60063D973 /* EditViewController.swift in Sources */,
 				1168336D1DB8726A0063D973 /* DataService.swift in Sources */,
+				1168337D1DB894220063D973 /* StaticView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

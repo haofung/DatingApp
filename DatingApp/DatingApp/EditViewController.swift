@@ -13,10 +13,11 @@ class EditViewController: UIViewController,UIImagePickerControllerDelegate,UINav
 
     var user:User!
     var selectedImage:UIImage!
+    var gender:String?
     
+    @IBOutlet weak var genderSelector: UISegmentedControl!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var usernameTextField: UITextField!
-    @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var aboutMeTextView: UITextView!
     
     override func viewDidLoad() {
@@ -24,7 +25,6 @@ class EditViewController: UIViewController,UIImagePickerControllerDelegate,UINav
         
         self.title = "Edit Profile"
         self.hideKeyboardWhenTappedAround()
-        self.editButton.userInteractionEnabled = false
         
         if let description = self.user.description{
         self.aboutMeTextView.text = description
@@ -37,6 +37,16 @@ class EditViewController: UIViewController,UIImagePickerControllerDelegate,UINav
             let url = NSURL(string: user.profileImage!)
             self.profileImageView.sd_setImageWithURL(url)
         }
+        
+        switch genderSelector.selectedSegmentIndex {
+        case 0:
+            self.gender = "male"
+        case 1:
+            self.gender = "female"
+        default:
+            break;
+        }
+        
         
         profileImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selectProfileImage)))
         profileImageView.userInteractionEnabled = true
@@ -54,6 +64,9 @@ class EditViewController: UIViewController,UIImagePickerControllerDelegate,UINav
         
         DataService.userRef.child(User.currentUserUid()!).child("username").setValue(username)
         DataService.userRef.child(User.currentUserUid()!).child("self-description").setValue(description)
+        if let gender = self.gender{
+        DataService.userRef.child(User.currentUserUid()!).child("gender").setValue(gender)
+        }
         
         if let profileImage = self.selectedImage{
             

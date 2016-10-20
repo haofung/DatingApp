@@ -13,15 +13,26 @@ import FirebaseAuth
 
 class RegisterViewController: UIViewController {
 
-    
+    var gender:String?
     
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var usernameTextField: UITextField!
     
+    @IBOutlet weak var genderSelector: UISegmentedControl!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
+        
+        switch genderSelector.selectedSegmentIndex {
+        case 0:
+            self.gender = "male"
+        case 1:
+            self.gender = "female"
+        default:
+            break;
+        }
     }
     
     
@@ -29,6 +40,7 @@ class RegisterViewController: UIViewController {
         
         guard
             let username = usernameTextField.text,
+            let gender = self.gender,
             let email = emailTextField.text,
             let password = passwordTextField.text else{
                 return
@@ -45,7 +57,7 @@ class RegisterViewController: UIViewController {
                 let firebaseRef = FIRDatabase.database().reference()
                 
                 let currentUserRef = firebaseRef.child("users").child(user.uid)
-                let userDict = ["email":email, "username":username]
+                let userDict = ["email":email, "username":username, "gender":gender]
                 currentUserRef.setValue(userDict)
                 //successfully sign up
             }else{
