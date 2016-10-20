@@ -66,22 +66,16 @@ class HomeViewController: UIViewController, KolodaViewDelegate, KolodaViewDataSo
                     if !self.likedAndDisliked.contains(user.uid!){
                         self.listOfUser.append(user)
                         self.listOfmix.append(user)
+                        if user.gender == "male"{
+                            self.listOfMale.append(user)
+                        }else if user.gender == "female"{
+                            self.listOfFemale.append(user)
+                        }
                         self.kolodaView.reloadData()
                     }
                 }
             }
-            self.filterMaleAndFemale()
         })
-    }
-
-    func filterMaleAndFemale(){
-        for i in self.listOfUser{
-            if i.gender == "male"{
-                self.listOfMale.append(i)
-            }else if i.gender == "female"{
-                self.listOfFemale.append(i)
-            }
-        }
     }
     
     @IBAction func onFilterButtonPressed(sender: AnyObject) {
@@ -167,15 +161,63 @@ class HomeViewController: UIViewController, KolodaViewDelegate, KolodaViewDataSo
     func koloda(koloda: KolodaView, didSwipeCardAtIndex index: UInt, inDirection direction: SwipeResultDirection) {
         //Example: loading more cards
         
+        //index not accurate caused error
+        
         let user = self.listOfUser[Int(index)]
+        
+        
+        
         
         if direction.hashValue == 0{
             print("left")
+            
+            for (index,i) in self.listOfmix.enumerate(){
+                if i.uid == user.uid{
+                    self.listOfmix.removeAtIndex(index)
+                }
+            }
+            for (index,i) in self.listOfMale.enumerate(){
+                if i.uid == user.uid{
+                    self.listOfMale.removeAtIndex(index)
+                }
+            }
+            for (index,i) in self.listOfFemale.enumerate(){
+                if i.uid == user.uid{
+                    self.listOfFemale.removeAtIndex(index)
+                }
+            }
+            for (index,i) in self.listOfUser.enumerate(){
+                if i.uid == user.uid{
+                    self.listOfUser.removeAtIndex(index)
+                }
+            }
+            
             
             DataService.userRef.child(User.currentUserUid()!).child("dislike").updateChildValues([user.uid!: true])
             
         }else if direction.hashValue == 1{
             print("right")
+            
+            for (index,i) in self.listOfmix.enumerate(){
+                if i.uid == user.uid{
+                    self.listOfmix.removeAtIndex(index)
+                }
+            }
+            for (index,i) in self.listOfMale.enumerate(){
+                if i.uid == user.uid{
+                    self.listOfMale.removeAtIndex(index)
+                }
+            }
+            for (index,i) in self.listOfFemale.enumerate(){
+                if i.uid == user.uid{
+                    self.listOfFemale.removeAtIndex(index)
+                }
+            }
+            for (index,i) in self.listOfUser.enumerate(){
+                if i.uid == user.uid{
+                    self.listOfUser.removeAtIndex(index)
+                }
+            }
             
             DataService.userRef.child(User.currentUserUid()!).child("like").updateChildValues([user.uid!: true])
         }
