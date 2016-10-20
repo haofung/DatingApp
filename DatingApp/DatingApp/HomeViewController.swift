@@ -13,8 +13,10 @@ class HomeViewController: UIViewController, KolodaViewDelegate, KolodaViewDataSo
 
     @IBOutlet weak var kolodaView: KolodaView!
     var listOfUser = [User]()
-    
-    var numberOfCards: UInt = 5
+    var likedAndDisliked = [String]()
+    var listOfFemale = [User]()
+    var listOfMale = [User]()
+    var listOfmix = [User]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,13 +25,100 @@ class HomeViewController: UIViewController, KolodaViewDelegate, KolodaViewDataSo
         kolodaView.delegate = self
         kolodaView.dataSource = self
         
-        DataService.userRef.observeEventType(.ChildAdded, withBlock: { userSnapshot in
-            if let user = User(snapshot: userSnapshot){
-                self.listOfUser.append(user)
-                self.kolodaView.reloadData()
+        removeLikedUser()
+        removeDislikeUser()
+        
+        addFilterUser()
+        
+       
+    }
+    func removeLikedUser(){
+    //add like user into array
+            DataService.userRef.child(User.currentUserUid()!).child("like").observeEventType(.Value, withBlock: { likeSnapshot in
+                if likeSnapshot.hasChildren(){
+                    let keyArray = likeSnapshot.value?.allKeys as! [String]
+                    for key in keyArray{
+                        self.likedAndDisliked.append(key)
+                    }
+    
+                    
+                }
+            })
+    }
+    
+    func removeDislikeUser(){
+        //add dislike user into array
+        DataService.userRef.child(User.currentUserUid()!).child("dislike").observeEventType(.Value, withBlock: { dislikeSnapshot in
+            if dislikeSnapshot.hasChildren(){
+                let keyArray = dislikeSnapshot.value?.allKeys as! [String]
+                for key in keyArray{
+                    self.likedAndDisliked.append(key)
+                }
             }
         })
     }
+    
+    func addFilterUser(){
+        //add filter user
+        DataService.userRef.observeEventType(.ChildAdded, withBlock: { userSnapshot in
+            if let user = User(snapshot: userSnapshot){
+                if user.uid != User.currentUserUid(){
+                    if !self.likedAndDisliked.contains(user.uid!){
+                        self.listOfUser.append(user)
+                        self.listOfmix.append(user)
+                        self.kolodaView.reloadData()
+                    }
+                }
+            }
+            self.filterMaleAndFemale()
+        })
+    }
+
+    func filterMaleAndFemale(){
+        for i in self.listOfUser{
+            if i.gender == "male"{
+                self.listOfMale.append(i)
+            }else if i.gender == "female"{
+                self.listOfFemale.append(i)
+            }
+        }
+    }
+    
+    @IBAction func onFilterButtonPressed(sender: AnyObject) {
+        
+        let alertController = UIAlertController(title: "Filter", message: "Select filter option", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        let maleAction = UIAlertAction(title: "Male", style: UIAlertActionStyle.Default) {
+            UIAlertAction in
+            
+            self.listOfUser = self.listOfMale
+            self.kolodaView.reloadData()
+            
+        }
+        
+        let femaleAction = UIAlertAction(title: "Female", style: UIAlertActionStyle.Default) {
+            UIAlertAction in
+            
+            self.listOfUser = self.listOfFemale
+            self.kolodaView.reloadData()
+            
+        }
+        
+        let allAction = UIAlertAction(title: "Mix", style: UIAlertActionStyle.Default) {
+            UIAlertAction in
+            
+            self.listOfUser = self.listOfmix
+            self.kolodaView.reloadData()
+            
+        }
+        
+        alertController.addAction(maleAction)
+        alertController.addAction(femaleAction)
+        alertController.addAction(allAction)
+        self.presentViewController(alertController, animated: true, completion: nil)
+        
+    }
+    
     
     @IBAction func left(sender: AnyObject) {
         kolodaView?.swipe(SwipeResultDirection.Left)
@@ -72,10 +161,6 @@ class HomeViewController: UIViewController, KolodaViewDelegate, KolodaViewDataSo
         
     }
     
-//    func koloda(koloda: KolodaView, viewForCardOverlayAtIndex index: UInt) -> OverlayView? {
-////        return NSBundle.mainBundle().loadNibNamed("OverlayView",
-//                                                  owner: self, options: nil)[0] as? OverlayView
-//    }
     
     //MARK: KolodaViewDelegate
     
@@ -96,11 +181,6 @@ class HomeViewController: UIViewController, KolodaViewDelegate, KolodaViewDataSo
         }
     }
     
-//    func kolodaDidRunOutOfCards(koloda: KolodaView) {
-//        //Example: reloading
-//        kolodaView.resetCurrentCardNumber()
-//    }
-    
     func kolodaDidSelectCardAtIndex(koloda: KolodaView, index: UInt) {
         
     }
@@ -117,7 +197,4 @@ class HomeViewController: UIViewController, KolodaViewDelegate, KolodaViewDataSo
         return true
     }
     
-//    func kolodaBackgroundCardAnimation(koloda: KolodaView) -> POPPropertyAnimation? {
-//        return nil
-//    }
 }

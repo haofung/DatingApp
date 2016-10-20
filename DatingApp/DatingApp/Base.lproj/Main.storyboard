@@ -125,7 +125,11 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Title" id="PtZ-7K-OIB">
-                        <barButtonItem key="leftBarButtonItem" title="MatchList" id="nJK-Lx-dJn" userLabel="List"/>
+                        <barButtonItem key="leftBarButtonItem" title="Filter" id="nJK-Lx-dJn" userLabel="List">
+                            <connections>
+                                <action selector="onFilterButtonPressed:" destination="hQJ-1Q-9Ib" id="bxg-eB-SAs"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Profile" id="tvQ-wh-ij9" userLabel="Profile">
                             <connections>
                                 <segue destination="7he-tu-STY" kind="presentation" id="N2f-LW-6PJ"/>
